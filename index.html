@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div id="passwordOverlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,30,30,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:'Poppins',sans-serif;"><div style="background:#fff;padding:2.5rem 2rem 2rem 2rem;border-radius:1.2rem;box-shadow:0 4px 32px rgba(0,0,0,0.18);min-width:320px;max-width:90vw;text-align:center;"><h2 style="margin-bottom:1.2rem;color:#222;font-weight:600;font-size:1.5rem;"><i class='fas fa-lock'></i> Access Restricted</h2><p style="margin-bottom:1.2rem;color:#444;font-size:1rem;">Enter the access password to use this tool.</p><input id="accessPassword" type="password" placeholder="Password" style="width:100%;padding:0.7rem 1rem;margin-bottom:1.2rem;border-radius:0.5rem;border:1px solid #ccc;font-size:1rem;outline:none;" autofocus><br><button id="submitPassword" style="background:#2d7dff;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:0.5rem;font-size:1rem;font-weight:500;cursor:pointer;">Enter</button><div id="passwordError" style="color:#e74c3c;margin-top:0.8rem;font-size:0.95rem;display:none;">Incorrect password. Try again.</div></div></div>
+    <div id="passwordOverlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,30,30,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:'Poppins',sans-serif;"><div style="background:#fff;padding:2.5rem 2rem 2rem 2rem;border-radius:1.2rem;box-shadow:0 4px 32px rgba(0,0,0,0.18);min-width:320px;max-width:90vw;text-align:center;"><h2 style="margin-bottom:1.2rem;color:#222;font-weight:600;font-size:1.5rem;"><i class='fas fa-lock'></i> Access Restricted</h2><p style="margin-bottom:1.2rem;color:#444;font-size:1rem;">Enter the access password to use this tool.</p><div style='position:relative;width:100%;margin-bottom:1.2rem;'><input id="accessPassword" type="password" placeholder="Password" style="width:100%;padding:0.7rem 2.5rem 0.7rem 1rem;border-radius:0.5rem;border:1px solid #ccc;font-size:1rem;outline:none;" autofocus><button id="togglePass" type="button" style="position:absolute;right:0.7rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;"><i id="eyeIcon" class="fas fa-eye"></i></button></div><br><button id="submitPassword" style="background:#2d7dff;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:0.5rem;font-size:1rem;font-weight:500;cursor:pointer;">Enter</button><div id="passwordError" style="color:#e74c3c;margin-top:0.8rem;font-size:0.95rem;display:none;">Incorrect password. Try again.</div></div></div>
     <div class="container">
         <header>
             <div class="logo">
@@ -168,6 +168,20 @@
           document.getElementById('submitPassword').click();
         }
       });
+      // Password visibility toggle
+      document.getElementById('togglePass').onclick = function() {
+        var passInput = document.getElementById('accessPassword');
+        var eyeIcon = document.getElementById('eyeIcon');
+        if (passInput.type === 'password') {
+          passInput.type = 'text';
+          eyeIcon.classList.remove('fa-eye');
+          eyeIcon.classList.add('fa-eye-slash');
+        } else {
+          passInput.type = 'password';
+          eyeIcon.classList.remove('fa-eye-slash');
+          eyeIcon.classList.add('fa-eye');
+        }
+      };
     })();
     </script>
 </body>
